@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29424.173
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GHLtarUtility", "GHLtarUtility.csproj", "{62812B16-F505-4AC1-A196-54224F783AD0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GHLtarUtilityLite", "GHLtarUtilityLite\GHLtarUtilityLite.csproj", "{B96194D1-DA4A-40B9-8A28-732C78061DAB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{62812B16-F505-4AC1-A196-54224F783AD0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{62812B16-F505-4AC1-A196-54224F783AD0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{62812B16-F505-4AC1-A196-54224F783AD0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{62812B16-F505-4AC1-A196-54224F783AD0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B96194D1-DA4A-40B9-8A28-732C78061DAB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B96194D1-DA4A-40B9-8A28-732C78061DAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B96194D1-DA4A-40B9-8A28-732C78061DAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B96194D1-DA4A-40B9-8A28-732C78061DAB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {81FC13B5-FD2D-4C7C-B1C9-CEF07FECF3A3}
+	EndGlobalSection
+EndGlobal
