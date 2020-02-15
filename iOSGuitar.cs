@@ -49,7 +49,6 @@ namespace GHLtarUtility
         {
             if (device.ConnectionStatus == BluetoothConnectionStatus.Disconnected)
             {
-                Console.WriteLine("destroy time");
                 destroy();
                 isDisconnected = true;
             }
@@ -81,18 +80,21 @@ namespace GHLtarUtility
             {
                 // Strum Down
                 controller.SetButtonState(Xbox360Button.Down, true);
+                controller.SetAxisValue(Xbox360Axis.LeftThumbY, -32768);
                 controller.SetButtonState(Xbox360Button.Up, false);
             }
             else if (strum == 0x00)
             {
                 // Strum Up
                 controller.SetButtonState(Xbox360Button.Down, false);
+                controller.SetAxisValue(Xbox360Axis.LeftThumbY, 32767);
                 controller.SetButtonState(Xbox360Button.Up, true);
             }
             else
             {
                 // No Strum
                 controller.SetButtonState(Xbox360Button.Down, false);
+                controller.SetAxisValue(Xbox360Axis.LeftThumbY, 0);
                 controller.SetButtonState(Xbox360Button.Up, false);
             }
 
@@ -100,8 +102,14 @@ namespace GHLtarUtility
             byte buttons = readBuffer[1];
             controller.SetButtonState(Xbox360Button.Start, (buttons & 0x02) != 0x00); // Pause
             controller.SetButtonState(Xbox360Button.Back, (buttons & 0x08) != 0x00); // Hero Power
+            controller.SetButtonState(Xbox360Button.LeftThumb, (buttons & 0x04) != 0x00); // GHTV Button
+            controller.SetButtonState(Xbox360Button.Guide, (buttons & 0x10) != 0x00); // Sync Button
 
-            // TODO: Proper D-Pad and Whammy/Tilt emulation
+            // Set the tilt and whammy
+            controller.SetAxisValue(Xbox360Axis.RightThumbY, (short)((readBuffer[6] - 0x80) * 0x102));
+            controller.SetAxisValue(Xbox360Axis.RightThumbX, (short)((readBuffer[19] - 0x80) * 0x102));
+
+            // TODO: Proper D-Pad emulation
         }
 
         public void destroy()
