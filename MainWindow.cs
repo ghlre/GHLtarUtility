@@ -363,27 +363,19 @@ namespace GHLtarUtility
             UpdatePS3Display();
         }
 
-        private void iOSP1Disconnect_Click(object sender, EventArgs e)
+        private void iOSDisconnect_Click(object sender, EventArgs e)
         {
-            if (iOSGuitars.Count >= 1) iOSGuitars[0].destroy();
-            MessageBox.Show("iOS guitars don't power off yet. Please disconnect the batteries to fully turn off your guitar, or wait for the guitar to time out.", "iOS Guitars", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        }
-
-        private void iOSP2Disconnect_Click(object sender, EventArgs e)
-        {
-            if (iOSGuitars.Count >= 2) iOSGuitars[1].destroy();
-            MessageBox.Show("iOS guitars don't power off yet. Please disconnect the batteries to fully turn off your guitar, or wait for the guitar to time out.", "iOS Guitars", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        }
-
-        private void iOSP3Disconnect_Click(object sender, EventArgs e)
-        {
-            if (iOSGuitars.Count >= 3) iOSGuitars[2].destroy();
-            MessageBox.Show("iOS guitars don't power off yet. Please disconnect the batteries to fully turn off your guitar, or wait for the guitar to time out.", "iOS Guitars", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        }
-
-        private void iOSP4Disconnect_Click(object sender, EventArgs e)
-        {
-            if (iOSGuitars.Count >= 4) iOSGuitars[3].destroy();
+            switch ((sender as Button).Name)
+            {
+                case "iOSP1Disconnect":
+                    if (iOSGuitars.Count >= 1) iOSGuitars[0].destroy(); break;
+                case "iOSP2Disconnect":
+                    if (iOSGuitars.Count >= 2) iOSGuitars[1].destroy(); break;
+                case "iOSP3Disconnect":
+                    if (iOSGuitars.Count >= 3) iOSGuitars[2].destroy(); break;
+                case "iOSP4Disconnect":
+                    if (iOSGuitars.Count >= 4) iOSGuitars[3].destroy(); break;
+            }
             MessageBox.Show("iOS guitars don't power off yet. Please disconnect the batteries to fully turn off your guitar, or wait for the guitar to time out.", "iOS Guitars", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }

@@ -260,7 +260,7 @@
             this.iOSP4Disconnect.TabIndex = 4;
             this.iOSP4Disconnect.Text = "✕";
             this.iOSP4Disconnect.UseVisualStyleBackColor = true;
-            this.iOSP4Disconnect.Click += new System.EventHandler(this.iOSP4Disconnect_Click);
+            this.iOSP4Disconnect.Click += new System.EventHandler(this.iOSDisconnect_Click);
             // 
             // iOSP4Label
             // 
@@ -299,7 +299,7 @@
             this.iOSP3Disconnect.TabIndex = 4;
             this.iOSP3Disconnect.Text = "✕";
             this.iOSP3Disconnect.UseVisualStyleBackColor = true;
-            this.iOSP3Disconnect.Click += new System.EventHandler(this.iOSP3Disconnect_Click);
+            this.iOSP3Disconnect.Click += new System.EventHandler(this.iOSDisconnect_Click);
             // 
             // iOSP3Label
             // 
@@ -338,7 +338,7 @@
             this.iOSP2Disconnect.TabIndex = 4;
             this.iOSP2Disconnect.Text = "✕";
             this.iOSP2Disconnect.UseVisualStyleBackColor = true;
-            this.iOSP2Disconnect.Click += new System.EventHandler(this.iOSP2Disconnect_Click);
+            this.iOSP2Disconnect.Click += new System.EventHandler(this.iOSDisconnect_Click);
             // 
             // iOSP2Label
             // 
@@ -377,7 +377,7 @@
             this.iOSP1Disconnect.TabIndex = 3;
             this.iOSP1Disconnect.Text = "✕";
             this.iOSP1Disconnect.UseVisualStyleBackColor = true;
-            this.iOSP1Disconnect.Click += new System.EventHandler(this.iOSP1Disconnect_Click);
+            this.iOSP1Disconnect.Click += new System.EventHandler(this.iOSDisconnect_Click);
             // 
             // iOSP1Label
             // 
