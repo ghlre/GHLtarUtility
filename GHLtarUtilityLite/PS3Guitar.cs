@@ -95,8 +95,8 @@ namespace GHLtarUtilityLite
                 controller.SetButtonState(Xbox360Button.Guide, (buttons & 0x10) != 0x00); // Sync Button
 
                 // Set the tilt and whammy
-                controller.SetAxisValue(Xbox360Axis.RightThumbY, (short)((readBuffer[6] - 0x80) * 0x102));
-                controller.SetAxisValue(Xbox360Axis.RightThumbX, (short)((readBuffer[19] - 0x80) * 0x102));
+                controller.SetAxisValue(Xbox360Axis.RightThumbY, (short)((readBuffer[6] * 0x101) - 32768));
+                controller.SetAxisValue(Xbox360Axis.RightThumbX, (short)((readBuffer[19] * 0x101) - 32768));
 
                 // TODO: Proper D-Pad emulation
             }
