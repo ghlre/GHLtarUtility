@@ -13,7 +13,7 @@ namespace GHLtarUtilityLite
     {
         ViGEmClient client;
 
-        List<PS3Guitar> PS3Guitars = new List<PS3Guitar>();
+        List<PS3Peripheral> PS3Peripherals = new List<PS3Peripheral>();
 
         public MainWindow()
         {
@@ -31,12 +31,12 @@ namespace GHLtarUtilityLite
 
         private void this_FormClosing(object sender, EventArgs e)
         {
-            foreach (PS3Guitar guitar in PS3Guitars) guitar.destroy();
+            foreach (PS3Peripheral peripheral in PS3Peripherals) peripheral.destroy();
         }
 
         private void UpdatePS3Display()
         {
-            if (PS3Guitars.Count >= 1)
+            if (PS3Peripherals.Count >= 1)
             {
                 ps3P1Panel.BackColor = Color.LimeGreen;
                 ps3P1Label.Text = "Connected!";
@@ -44,7 +44,7 @@ namespace GHLtarUtilityLite
                 // Update indicators
                 try
                 {
-                    switch (PS3Guitars[0].controller.UserIndex)
+                    switch (PS3Peripherals[0].controller.UserIndex)
                     {
                         case 0: ps3P1Indicator.Image = Properties.Resources.player1; break;
                         case 1: ps3P1Indicator.Image = Properties.Resources.player2; break;
@@ -63,7 +63,7 @@ namespace GHLtarUtilityLite
                 ps3P1Indicator.Image = Properties.Resources.player0;
             }
 
-            if (PS3Guitars.Count >= 2)
+            if (PS3Peripherals.Count >= 2)
             {
                 ps3P2Panel.BackColor = Color.LimeGreen;
                 ps3P2Label.Text = "Connected!";
@@ -71,7 +71,7 @@ namespace GHLtarUtilityLite
                 // Update indicators
                 try
                 {
-                    switch (PS3Guitars[1].controller.UserIndex)
+                    switch (PS3Peripherals[1].controller.UserIndex)
                     {
                         case 0: ps3P2Indicator.Image = Properties.Resources.player1; break;
                         case 1: ps3P2Indicator.Image = Properties.Resources.player2; break;
@@ -92,7 +92,7 @@ namespace GHLtarUtilityLite
                 ps3P2Indicator.Image = Properties.Resources.player0;
             }
 
-            if (PS3Guitars.Count >= 3)
+            if (PS3Peripherals.Count >= 3)
             {
                 ps3P3Panel.BackColor = Color.LimeGreen;
                 ps3P3Label.Text = "Connected!";
@@ -100,7 +100,7 @@ namespace GHLtarUtilityLite
                 // Update indicators
                 try
                 {
-                    switch (PS3Guitars[2].controller.UserIndex)
+                    switch (PS3Peripherals[2].controller.UserIndex)
                     {
                         case 0: ps3P3Indicator.Image = Properties.Resources.player1; break;
                         case 1: ps3P3Indicator.Image = Properties.Resources.player2; break;
@@ -121,7 +121,7 @@ namespace GHLtarUtilityLite
                 ps3P3Indicator.Image = Properties.Resources.player0;
             }
 
-            if (PS3Guitars.Count >= 4)
+            if (PS3Peripherals.Count >= 4)
             {
                 ps3P4Panel.BackColor = Color.LimeGreen;
                 ps3P4Label.Text = "Connected!";
@@ -129,7 +129,7 @@ namespace GHLtarUtilityLite
                 // Update indicators
                 try
                 {
-                    switch (PS3Guitars[3].controller.UserIndex)
+                    switch (PS3Peripherals[3].controller.UserIndex)
                     {
                         case 0: ps3P4Indicator.Image = Properties.Resources.player1; break;
                         case 1: ps3P4Indicator.Image = Properties.Resources.player2; break;
@@ -161,18 +161,18 @@ namespace GHLtarUtilityLite
             // Create list of devices to prevent re-attaching existing dongles.
             List<string> devices = new List<string>();
 
-            foreach (PS3Guitar guitar in PS3Guitars.ToList())
+            foreach (PS3Peripheral peripheral in PS3Peripherals.ToList())
             {
                 // Remove any guitars that can't be found anymore
-                if (!guitar.isReadable())
+                if (!peripheral.isReadable())
                 {
-                    guitar.destroy();
-                    PS3Guitars.Remove(guitar);
+                    peripheral.destroy();
+                    PS3Peripherals.Remove(peripheral);
                 }
                 else
                 {
                     // Add guitars that are still found to the list of existing devices
-                    devices.Add(guitar.device.DevicePath);
+                    devices.Add(peripheral.device.DevicePath);
                 }
             }
 
@@ -184,10 +184,21 @@ namespace GHLtarUtilityLite
                 {
                     UsbDevice trueDevice;
                     device.Open(out trueDevice);
-                    if (PS3Guitars.Count < 4 && trueDevice != null && !devices.Contains(trueDevice.DevicePath))
+                    if (PS3Peripherals.Count < 4 && trueDevice != null && !devices.Contains(trueDevice.DevicePath))
                     {
-                        PS3Guitar newGuitar = new PS3Guitar(trueDevice, client.CreateXbox360Controller());
-                        PS3Guitars.Add(newGuitar);
+                        PS3Peripheral newGuitar = new PS3Guitar(trueDevice, client.CreateXbox360Controller());
+                        PS3Peripherals.Add(newGuitar);
+                    }
+                }
+                // USB\VID_12BA&PID_074B is the ID of the PS3 Turntable
+                else if (device.Vid == 0x12BA && device.Pid == 0x0140)
+                {
+                    UsbDevice trueDevice;
+                    device.Open(out trueDevice);
+                    if (PS3Peripherals.Count < 4 && trueDevice != null && !devices.Contains(trueDevice.DevicePath))
+                    {
+                        PS3Peripheral newTurntable = new PS3Turntable(trueDevice, client.CreateXbox360Controller());
+                        PS3Peripherals.Add(newTurntable);
                     }
                 }
             }

@@ -7,10 +7,8 @@ using System.Timers;
 
 namespace GHLtarUtilityLite
 {
-    class PS3Guitar
+    class PS3Guitar : PS3Peripheral
     {
-        public UsbDevice device;
-        public IXbox360Controller controller;
         private Timer runTimer;
         System.Threading.Thread t;
         private bool shouldStop;
@@ -32,7 +30,7 @@ namespace GHLtarUtilityLite
             controller.Connect();
         }
 
-        public bool isReadable()
+        public override bool isReadable()
         {
             // If device isn't open (closes itself), assume disconnected.
             if (!device.IsOpen) return false;
@@ -40,7 +38,7 @@ namespace GHLtarUtilityLite
             return true;
         }
 
-        public void updateRoutine()
+        private void updateRoutine()
         {
             while (!shouldStop)
             {
@@ -100,7 +98,7 @@ namespace GHLtarUtilityLite
             }
         }
 
-        public void sendControlPacket(Object source, ElapsedEventArgs e)
+        private void sendControlPacket(Object source, ElapsedEventArgs e)
         {
             // Send the control packet (this is what keeps strumming alive)
             byte[] buffer = new byte[9] { 0x02, 0x08, 0x20, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
@@ -109,7 +107,7 @@ namespace GHLtarUtilityLite
             device.ControlTransfer(ref setupPacket, buffer, 0x0008, out bytesWrote);
         }
 
-        public void destroy()
+        public override void destroy()
         {
             // Destroy EVERYTHING.
             shouldStop = true;
