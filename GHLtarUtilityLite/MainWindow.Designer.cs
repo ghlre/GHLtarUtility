@@ -66,7 +66,7 @@
             this.ps3Box.Size = new System.Drawing.Size(200, 159);
             this.ps3Box.TabIndex = 0;
             this.ps3Box.TabStop = false;
-            this.ps3Box.Text = "PS3/Wii U Guitars";
+            this.ps3Box.Text = "PS3/Wii U Guitars && Turntables";
             // 
             // ps3P4Panel
             // 
