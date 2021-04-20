@@ -68,10 +68,10 @@ namespace GHLtarUtility
                     controller.SetAxisValue(Xbox360Axis.LeftThumbY, ClampShort((readBuffer[6] << 9) - 65536));
 
                     // Set effects axis
-                    controller.SetAxisValue(Xbox360Axis.RightThumbX, (short)(((readBuffer[19] << 6) | (readBuffer[20] << 14)) - 32768));
+                    controller.SetAxisValue(Xbox360Axis.RightThumbX, (short)((((readBuffer[19] & 0xF0) << 6) | ((readBuffer[20] & 0x03) << 14)) - 32768));
 
                     // Set crossfader axis
-                    controller.SetAxisValue(Xbox360Axis.RightThumbY, (short)(((readBuffer[21] << 6) | (readBuffer[22] << 14)) - 32768));
+                    controller.SetAxisValue(Xbox360Axis.RightThumbY, (short)((((readBuffer[21] & 0xF0) << 6) | ((readBuffer[22] & 0x03) << 14)) - 32768));
 
                     // Set DPAD
                     controller.SetButtonState(Xbox360Button.Up, readBuffer[2] == 7 || readBuffer[2] == 0 || readBuffer[2] == 1);

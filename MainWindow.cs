@@ -293,7 +293,6 @@ namespace GHLtarUtility
         {
             watcher.ScanningMode = BluetoothLEScanningMode.Active;
             watcher.Received += OnBLEAdvertisement;
-            iOSSearching.Checked = true;
             DisplayTimer_Tick(sender, e);
             
         }
