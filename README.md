@@ -30,7 +30,8 @@ The Lite version removes the ability to use iOS guitars as the Bluetooth LE APIs
 
 1. [Download Zadig](https://zadig.akeo.ie/) and run it as administrator.
 2. Click the Options tab, then click `List All Devices`.
-3. Close the Options tab, then select the `Guitar Hero` device in the dropdown menu. If you need to verify you selected the right device, the PS3/Wii U dongle has a USB ID of `12BA 074B`.
+3. For PS3/Wii U dongles, select the `Guitar Hero` device in the dropdown menu. For PS3 turntables, select `Guitar Hero5 for PlayStation (R) 3`.
+    - If you need to verify you selected the right device, the PS3/Wii U GHL dongle has a USB ID of `12BA 074B`, and the PS3 turntable dongle has a USB ID of `12BA 0140`.
 4. In the box the green or orange arrow is pointing to, make sure the driver listed is the `WinUSB` driver. If it is not, click the arrow buttons until it says `WinUSB`.
 5. Click the `Install WCID Driver`/`Replace Driver` button, then close Zadig.
 6. Launch GHLtarUtility (or GHLtarUtility Lite for non-Windows 10) and sync your guitar to the dongle.
